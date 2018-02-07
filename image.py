@@ -11,8 +11,9 @@ class Window(QWidget):
 		self.title = 'Image Browser'
 		self.left = 100 
 		self.top = 100
-		self.width = 500
-		self.height = 500
+		self.width = 0
+		self.height = 0
+		self.directories = []
 		self.initUI()
 
 	#init UI with widget
@@ -24,6 +25,12 @@ class Window(QWidget):
 		pixmap = QPixmap('./data/Jacka.png')
 		label.setPixmap(pixmap)
 		self.show()
+
+	def directory(self):
+		self.directories = os.listdir(os.path.join('.', 'data'))
+		print(self.directories)
+
+	def configure(w, h, b):
 
 
 if __name__ == '__main__':
