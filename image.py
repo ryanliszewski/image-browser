@@ -1,5 +1,6 @@
 import sys
 import os
+from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
@@ -13,17 +14,23 @@ class Window(QWidget):
 		self.top = 100
 		self.width = 250
 		self.height = 250
-		self.initUI(250, 250, 250)
+		self.initUI(500, 500, 100)
 
 	#init UI with widget
 	def initUI(self, W, H, B):
 		self.setWindowTitle(self.title)
 		self.setGeometry(self.left, self.top, W, H)
 
+		#need to set image window and center
 		label = QLabel(self)
 		pixmap = QPixmap(self.firstImg())
+		pixmap = pixmap.scaled(self.imgWindow(B),Qt.KeepAspectRatio)
 		label.setPixmap(pixmap)
 		self.show()
+
+	def imgWindow(self, B):
+		size = QSize(self.width - (2 * B), self.height - (2 * B));
+		return size
 
 	#reutuns first image in directory /data 
 	def firstImg(self):
