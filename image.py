@@ -11,26 +11,24 @@ class Window(QWidget):
 		self.title = 'Image Browser'
 		self.left = 100 
 		self.top = 100
-		self.width = 0
-		self.height = 0
-		self.directories = []
-		self.initUI()
+		self.width = 250
+		self.height = 250
+		self.initUI(250, 250, 250)
 
 	#init UI with widget
-	def initUI(self):
+	def initUI(self, W, H, B):
 		self.setWindowTitle(self.title)
-		self.setGeometry(self.left, self.top, self.width, self.height)
-		
+		self.setGeometry(self.left, self.top, W, H)
+
 		label = QLabel(self)
-		pixmap = QPixmap('./data/Jacka.png')
+		pixmap = QPixmap(self.firstImg())
 		label.setPixmap(pixmap)
 		self.show()
 
-	def directory(self):
-		self.directories = os.listdir(os.path.join('.', 'data'))
-		print(self.directories)
-
-	def configure(w, h, b):
+	#reutuns first image in directory /data 
+	def firstImg(self):
+		imgs = os.listdir(os.path.join('.', 'data'))
+		return os.path.join('.', 'data', imgs[0])
 
 
 if __name__ == '__main__':
